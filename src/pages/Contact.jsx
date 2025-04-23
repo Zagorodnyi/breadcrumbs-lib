@@ -1,14 +1,14 @@
 // src/pages/Contact.js
 import React from 'react'
 import Layout from '../components/Layout'
-import { useBreadcrumbsState, useBreadcrumbs, useNavigate } from '../breadcrumbs'
+import { useBreadcrumbState, useBreadcrumbs, useNavigate } from '../breadcrumbs'
 
 function Contact() {
   const { goToBreadcrumb } = useBreadcrumbs()
   const { navigateWithBreadcrumbs } = useNavigate()
 
   // Form state with breadcrumbs state preservation
-  const [formState, setFormState] = useBreadcrumbsState({
+  const [formState, setFormState] = useBreadcrumbState('formState', {
     name: '',
     email: '',
     message: '',

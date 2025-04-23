@@ -168,7 +168,7 @@ describe('#goToBreadcrumb()', () => {
 })
 
 
-describe('#useBreadcrumbsState()', () => {
+describe('#useBreadcrumbState()', () => {
   beforeEach(() => {
     render(<RouterProvider router={createMemoryRouter(routes, { initialEntries: ['/'], initialIndex: 0 })} />);
   })

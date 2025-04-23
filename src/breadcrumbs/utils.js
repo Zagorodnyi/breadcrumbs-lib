@@ -7,20 +7,20 @@ import BreadcrumbItem from './BreadcrumbItem'
  * @returns {string|null} - The title of the page or null if not found
  */
 export function getTitleByPathname(pathname = '', routesMap) {
-  const pathWithoutSearch = pathname.split('?')[0];
+  const [pathWithoutSearch] = pathname.split('?')
 
-  const exactMatch = routesMap[pathWithoutSearch];
-  if (exactMatch) {
-    return exactMatch.title;
+  const exactMatch = routesMap[pathWithoutSearch]
+  if(exactMatch) {
+    return exactMatch.title
   }
 
-  for (const { regex, title } of Object.values(routesMap)) {
-    if (regex && regex.test(pathWithoutSearch)) {
-      return title;
+  for(const { regex, title } of Object.values(routesMap)) {
+    if(regex && regex.test(pathWithoutSearch)) {
+      return title
     }
   }
 
-  return null;
+  return null
 }
 
 

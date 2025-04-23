@@ -1,7 +1,7 @@
 // src/pages/Products.js
 import React from 'react'
 import Layout from '../components/Layout'
-import { useBreadcrumbsState, useBreadcrumbs, useNavigate, BreadcrumbLink } from '../breadcrumbs'
+import { useBreadcrumbState, useBreadcrumbs, useNavigate, BreadcrumbLink } from '../breadcrumbs'
 
 // Sample product data
 const productsList = [
@@ -16,31 +16,24 @@ function Products() {
   const { goToBreadcrumb } = useBreadcrumbs()
   const { navigate } = useNavigate()
   // Use breadcrumbs state to save filter values
-  const [state, setState] = useBreadcrumbsState({
-    searchTerm: '',
-    selectedCategory: '',
-  })
+  const [searchTerm, setSearchTerm] = useBreadcrumbState('searchTerm', '')
+  const [selectedCategory, setSelectedCategory] = useBreadcrumbState('selectedCategory', '')
+
 
   // Filter products based on state
   const filteredProducts = productsList.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(state.searchTerm.toLowerCase())
-    const matchesCategory = state.selectedCategory === '' || product.category === state.selectedCategory
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = selectedCategory === '' || product.category === selectedCategory
     return matchesSearch && matchesCategory
   })
 
   // Handle input changes
   const handleSearchChange = (e) => {
-    setState({
-      ...state,
-      searchTerm: e.target.value
-    })
+    setSearchTerm(e.target.value)
   }
 
   const handleCategoryChange = (e) => {
-    setState({
-      ...state,
-      selectedCategory: e.target.value
-    })
+    setSelectedCategory(e.target.value)
   }
 
   return (
@@ -55,7 +48,7 @@ function Products() {
             <input
               data-testid="search-input"
               type="text"
-              value={state.searchTerm}
+              value={searchTerm}
               onChange={handleSearchChange}
               style={{ marginLeft: '5px', padding: '5px' }}
             />
@@ -66,7 +59,7 @@ function Products() {
           <label style={{ marginRight: '10px' }}>
             Filter by Category:
             <select
-              value={state.selectedCategory}
+              value={selectedCategory}
               onChange={handleCategoryChange}
               style={{ marginLeft: '5px', padding: '5px' }}
             >

@@ -1,5 +1,5 @@
 export { BreadcrumbsProvider, useBreadcrumbs } from './BreadcrumbsProvider'
-export { useBreadcrumbsState } from './useBreadcrumbsState'
+export { useBreadcrumbState } from './useBreadcrumbState'
 export { useNavigate } from './useNavigate'
 export { default as BreadcrumbItem } from './BreadcrumbItem'
 export { default as BreadcrumbLink } from './BreadcrumbLink'

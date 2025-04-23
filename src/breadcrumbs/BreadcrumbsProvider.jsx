@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect, useCallback, useContext, useLayoutEffect } from 'react'
 import { useNavigate as useRouterNavigate, useLocation } from 'react-router-dom'
 
@@ -12,7 +13,6 @@ export function BreadcrumbsProvider({ children, routesMap = () => void 0 }) {
   const routerNavigate = useRouterNavigate()
 
   const currentPath = `${location.pathname}${location.search}`
-
   const [breadcrumbs, setBreadcrumbs] = useState(initBreadcrumbs(currentPath, getTitleByPathname(currentPath, routesMap)))
 
   const _resetToIndex = useCallback(index => {
@@ -81,7 +81,7 @@ export function BreadcrumbsProvider({ children, routesMap = () => void 0 }) {
 
   /** *Internal Fn* Pushes breadcrumb into the stack without navigation */
   const pushBreadcrumbWithoutNav = useCallback((path, state = {}) => {
-    setBreadcrumbs(prev => [ ...prev, new BreadcrumbItem({ path, title: getTitleByPathname(path, routesMap), state })])
+    setBreadcrumbs(prev => [...prev, new BreadcrumbItem({ path, title: getTitleByPathname(path, routesMap), state })])
   }, [routesMap])
 
   // SYNC
@@ -115,7 +115,7 @@ export function BreadcrumbsProvider({ children, routesMap = () => void 0 }) {
     _internal: {
       updateBreadcrumbState,
       pushBreadcrumbWithoutNav,
-    }
+    },
   }
 
   return (

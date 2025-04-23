@@ -241,11 +241,11 @@ export function useBreadcrumbs(): BreadcrumbsHook;
  * @returns [state, setState] tuple similar to useState
  * @example
  * ```tsx
- * import { useBreadcrumbsState } from 'lib/breadcrumbs';
+ * import { useBreadcrumbState } from 'lib/breadcrumbs';
  *
  * function UserFilters() {
  *   // State persists when navigating away and back
- *   const [filters, setFilters] = useBreadcrumbsState({
+ *   const [filters, setFilters] = useBreadcrumbState('filters', {
  *     searchTerm: '',
  *     sortBy: 'name'
  *   });
@@ -274,7 +274,7 @@ export function useBreadcrumbs(): BreadcrumbsHook;
  * }
  * ```
  */
-export function useBreadcrumbsState<T>(initialState: T): [T, (newState: T | ((prevState: T) => T)) => void];
+export function useBreadcrumbState<T>(key: string, initialState?: T): [T, (newState: T | ((prevState: T) => T)) => void];
 
 /**
  * Return type of useNavigate hook
